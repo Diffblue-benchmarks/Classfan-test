@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.OrderExemptReviewStrategyDetailMapper">
+    <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategyDetail">
+        <id column="ID" property="orderExemptReviewStrategyDetailId" jdbcType="VARCHAR"/>
+        <result column="SINGLE_PRODUCT_ID" property="singleProductId" jdbcType="BIGINT"/>
+        <result column="SINGLE_PRODUCT_CODE" property="singleProductCode" jdbcType="VARCHAR"/>
+        <result column="SINGLE_PRODUCT_DESCRIBE" property="singleProductDescribe" jdbcType="VARCHAR"/>
+        <result column="GOODS_CODE" property="goodsCode" jdbcType="VARCHAR"/>
+        <result column="SHOP_ID" property="shopId" jdbcType="BIGINT"/>
+        <result column="SHOP_CODE" property="shopCode" jdbcType="VARCHAR"/>
+        <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID, SINGLE_PRODUCT_ID, SINGLE_PRODUCT_CODE, SINGLE_PRODUCT_DESCRIBE, GOODS_CODE, SHOP_ID, SHOP_CODE,
+        SHOP_NAME, TYPE
+    </sql>
+
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.baison.e3plus.basebiz.order.service.dao.model.example.OrderExemptReviewStrategyDetailExample">
+        select
+        <include refid="Base_Column_List" />
+        from ord_exempt_review_strategy_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <select id="count" resultType="Long" parameterType="com.baison.e3plus.basebiz.order.service.dao.model.example.OrderExemptReviewStrategyDetailExample">
+        select count(1) from ord_exempt_review_strategy_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategyDetail">
+        insert into ord_exempt_review_strategy_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderExemptReviewStrategyDetailId != null">
+                ID,
+            </if>
+            <if test="singleProductId != null">
+                SINGLE_PRODUCT_ID,
+            </if>
+            <if test="singleProductCode != null">
+                SINGLE_PRODUCT_CODE,
+            </if>
+            <if test="singleProductDescribe != null">
+                SINGLE_PRODUCT_DESCRIBE,
+            </if>
+            <if test="goodsCode != null">
+                GOODS_CODE,
+            </if>
+            <if test="shopId != null">
+                SHOP_ID,
+            </if>
+            <if test="shopCode != null">
+                SHOP_CODE,
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderExemptReviewStrategyDetailId != null">
+                #{orderExemptReviewStrategyDetailId,jdbcType=VARCHAR},
+            </if>
+            <if test="singleProductId != null">
+                #{singleProductId,jdbcType=BIGINT},
+            </if>
+            <if test="singleProductCode != null">
+                #{singleProductCode,jdbcType=VARCHAR},
+            </if>
+            <if test="singleProductDescribe != null">
+                #{singleProductDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsCode != null">
+                #{goodsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null">
+                #{shopId,jdbcType=BIGINT},
+            </if>
+            <if test="shopCode != null">
+                #{shopCode,jdbcType=VARCHAR},
+            </if>
+            <if test="shopName != null">
+                #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelectiveBatch" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategyDetail">
+        update ord_exempt_review_strategy_detail
+        <set>
+            <if test="singleProductId != null">
+                SINGLE_PRODUCT_ID = #{singleProductId},
+            </if>
+            <if test="singleProductCode != null">
+                SINGLE_PRODUCT_CODE = #{singleProductCode},
+            </if>
+            <if test="singleProductDescribe != null">
+                SINGLE_PRODUCT_DESCRIBE = #{singleProductDescribe},
+            </if>
+            <if test="goodsCode != null">
+                GOODS_CODE = #{goodsCode},
+            </if>
+            <if test="shopId != null">
+                SHOP_ID = #{shopId},
+            </if>
+            <if test="shopCode != null">
+                SHOP_CODE = #{shopCode},
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME = #{shopName},
+            </if>
+            <if test="type != null">
+                TYPE = #{type},
+            </if>
+        </set>
+        where ID = #{orderExemptReviewStrategyDetailId}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from ord_exempt_review_strategy_detail where ID = #{orderExemptReviewStrategyDetailId,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

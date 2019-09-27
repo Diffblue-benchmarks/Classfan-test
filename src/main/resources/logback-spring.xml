@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--
+     引入paas monitor jar包中 的json appender ，注意该文件默认引入了
+            org/springframework/boot/logging/logback/defaults.xml
+            org/springframework/boot/logging/logback/console-appender.xml
+    -->
+
+    <include resource="cn/com/pg/paas/monitor/logging/logback/console-json-appender.xml"/>
+
+    <!--本地，dev,qa环境 使用spring boot 自带的console格式输出-->
+    <springProfile name="local,dev,qa">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!--生产环境使用paas monitor 支持的 json 格式输出, （也可以使用!local 取反的方式表示除了本地开发全部采用json格式输出） -->
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="CONSOLE-JSON"/>
+        </root>
+    </springProfile>
+
+</configuration>

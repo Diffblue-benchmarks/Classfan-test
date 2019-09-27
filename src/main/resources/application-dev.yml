@@ -1,0 +1,39 @@
+monitor:
+  open: true
+  eventhub-type: STREAM_SDK
+#---------------------------------------------------------------------------
+#ONLY used for local development testing and MUST be removed when going online
+pg:
+  stream:
+    event:
+      0f724400f1594161bc33d9073f98eaac:
+        channelName: LoggingOutputChannel
+        status: '1'
+      5bd46688fc2c4b49b9436b9cbc96a781:
+        channelName: MetricsOutputChannel
+        status: '1'
+
+spring:
+      cloud:
+            stream:
+              binders:
+                logging:
+                  environment:
+                    producerConnectionStr: Endpoint=sb://consumer-qa-streaming-monitoring.servicebus.chinacloudapi.cn/;SharedAccessKeyName=api-metrics-send;SharedAccessKey=+733HldZ54NPbJzZ43yv6WHgPuSGJjK12pUsDUgG/Qc=;EntityPath=api-metrics
+                  type: eventhubs
+                metrics:
+                  environment:
+                    producerConnectionStr: Endpoint=sb://consumer-qa-streaming-monitoring.servicebus.chinacloudapi.cn/;SharedAccessKeyName=kpi-metrics-send;SharedAccessKey=iO/UlugNVqYNcikJ9BKMKVS81Ai9+rgvfl7MY+Zz8Hc=;EntityPath=kpi-metrics
+                  type: eventhubs
+              bindings:
+                LoggingOutputChannel:
+                  binder: logging
+                  destination: LoggingOutputChannel
+                MetricsOutputChannel:
+                  binder: metrics
+                  destination: MetricsOutputChannel
+              defaultBinder: logging
+
+      main:
+        allow-bean-definition-overriding: true
+#----------------------------------------------------------------------------

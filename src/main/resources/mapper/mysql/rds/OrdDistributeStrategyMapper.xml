@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.OrdDistributeStrategyMapper">
+    <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+        <id column="order_distribute_strategy_id" property="orderDistributeStrategyId" jdbcType="BIGINT"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="distribute_rule" property="distributeRule" jdbcType="BIT"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="is_all_ware_house_distribute" property="isAllWareHouseDistribute" jdbcType="BIT"/>
+        <result column="e_commerce_first" property="eCommerceFirst" jdbcType="BIT"/>
+        <result column="is_channel_first" property="isChannelFirst" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Where_Id_in">
+        <where>order_distribute_strategy_id in
+            <foreach collection="array" item="orderDistributeStrategyId" open="(" close=")" separator=",">
+                #{orderDistributeStrategyId,jdbcType=INTEGER}
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    order_distribute_strategy_id, code, name, distribute_rule, status, priority, is_all_ware_house_distribute, 
+    e_commerce_first,is_channel_first
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_distribute_strategy
+        where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByPrimaryKeyBatch" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_distribute_strategy
+        <include refid="Where_Id_in"/>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.baison.e3plus.basebiz.order.service.dao.model.example.OrdDistributeStrategyExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from ord_distribute_strategy
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ord_distribute_strategy
+    where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByPrimaryKeyBatch" parameterType="java.lang.Long">
+        delete
+        from ord_distribute_strategy
+        <include refid="Where_Id_in"/>
+    </delete>
+    <insert id="insert" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+    insert into ord_distribute_strategy (order_distribute_strategy_id, code, 
+      name, distribute_rule, status, 
+      priority, is_all_ware_house_distribute, e_commerce_first,is_channel_first
+      )
+    values (#{orderDistributeStrategyId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{distributeRule,jdbcType=BIT}, #{status,jdbcType=INTEGER}, 
+      #{priority,jdbcType=INTEGER}, #{isAllWareHouseDistribute,jdbcType=BIT}, #{eCommerceFirst,jdbcType=BIT},#{isChannelFirst,jdbcType=BIT}
+      )
+  </insert>
+    <insert id="insertBatch" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+        insert into ord_distribute_strategy (order_distribute_strategy_id, code,
+        name, distribute_rule, status,
+        priority, is_all_ware_house_distribute, e_commerce_first,is_channel_first
+        )
+        values
+        <foreach collection="array" separator="," item="item">
+            (#{item.orderDistributeStrategyId,jdbcType=INTEGER}, #{item.code,jdbcType=VARCHAR},
+            #{item.name,jdbcType=VARCHAR}, #{item.distributeRule,jdbcType=BIT}, #{item.status,jdbcType=INTEGER},
+            #{item.priority,jdbcType=INTEGER}, #{item.isAllWareHouseDistribute,jdbcType=BIT},
+            #{item.eCommerceFirst,jdbcType=BIT},#{item.isChannelFirst,jdbcType=BIT}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+        insert into ord_distribute_strategy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderDistributeStrategyId != null">
+                order_distribute_strategy_id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="distributeRule != null">
+                distribute_rule,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="isAllWareHouseDistribute != null">
+                is_all_ware_house_distribute,
+            </if>
+            <if test="eCommerceFirst != null">
+                e_commerce_first,
+            </if>
+            <if test="isChannelFirst!=null">
+                is_channel_first
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderDistributeStrategyId != null">
+                #{orderDistributeStrategyId,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="distributeRule != null">
+                #{distributeRule,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="isAllWareHouseDistribute != null">
+                #{isAllWareHouseDistribute,jdbcType=BIT},
+            </if>
+            <if test="eCommerceFirst != null">
+                #{eCommerceFirst,jdbcType=BIT},
+            </if>
+            <if test="is_channel_first != null">
+                #{is_channel_first,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+        update ord_distribute_strategy
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="distributeRule != null">
+                distribute_rule = #{distributeRule,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="isAllWareHouseDistribute != null">
+                is_all_ware_house_distribute = #{isAllWareHouseDistribute,jdbcType=BIT},
+            </if>
+            <if test="eCommerceFirst != null">
+                e_commerce_first = #{eCommerceFirst,jdbcType=BIT},
+            </if>
+            <if test="isChannelFirst!=null">
+                is_channel_first = #{isChannelFirst,jdbcType=BIT},
+            </if>
+        </set>
+        where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeySelectiveBatch"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+        <foreach collection="array" item="item" separator=";">
+            update ord_distribute_strategy
+            <set>
+                <if test="item.code != null">
+                    code = #{item.code,jdbcType=VARCHAR},
+                </if>
+                <if test="item.name != null">
+                    name = #{item.name,jdbcType=VARCHAR},
+                </if>
+                <if test="item.distributeRule != null">
+                    distribute_rule = #{item.distributeRule,jdbcType=BIT},
+                </if>
+                <if test="item.status != null">
+                    status = #{item.status,jdbcType=INTEGER},
+                </if>
+                <if test="item.priority != null">
+                    priority = #{item.priority,jdbcType=INTEGER},
+                </if>
+                <if test="item.isAllWareHouseDistribute != null">
+                    is_all_ware_house_distribute = #{item.isAllWareHouseDistribute,jdbcType=BIT},
+                </if>
+                <if test="item.eCommerceFirst != null">
+                    e_commerce_first = #{item.eCommerceFirst,jdbcType=BIT},
+                </if>
+                <if test="item.isChannelFirst!=null">
+                    is_channel_first = #{item.isChannelFirst,jdbcType=BIT},
+                </if>
+            </set>
+            where order_distribute_strategy_id = #{item.orderDistributeStrategyId,jdbcType=INTEGER}
+        </foreach>
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderDistributeStrategy">
+    update ord_distribute_strategy
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      distribute_rule = #{distributeRule,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      is_all_ware_house_distribute = #{isAllWareHouseDistribute,jdbcType=BIT},
+      e_commerce_first = #{eCommerceFirst,jdbcType=BIT},
+      is_channel_first = #{isChannelFirst,jdbcType=BIT}
+    where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=INTEGER}
+  </update>
+    <update id="enableByPrimaryKey" parameterType="java.lang.Long">
+      update ord_distribute_strategy
+      set status = 1
+      where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=INTEGER}
+  </update>
+    <update id="enableByPrimaryKeyBatch" parameterType="java.lang.Long">
+        update ord_distribute_strategy
+        set status = 1
+        <include refid="Where_Id_in"/>
+    </update>
+    <update id="disableByPrimaryKey" parameterType="java.lang.Long">
+      update ord_distribute_strategy
+      set status = 2
+      where order_distribute_strategy_id = #{orderDistributeStrategyId,jdbcType=INTEGER}
+  </update>
+    <update id="disableByPrimaryKeyBatch" parameterType="java.lang.Long">
+        update ord_distribute_strategy
+        set status = 2
+        <include refid="Where_Id_in"/>
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_distribute_strategy
+    </select>
+    <select id="count" resultType="Long">
+        select count(1) from ord_distribute_strategy
+    </select>
+    <select id="selectIdsByExample" resultType="Long">
+        select order_distribute_strategy_id from ord_distribute_strategy
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+</mapper>

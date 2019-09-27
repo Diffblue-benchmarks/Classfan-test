@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.AdvancedStrategyPlatformGoodsDetailMapper">
+    <resultMap id="BaseResultMap"
+               type="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="express_strategy_id" property="expressStrategyId" jdbcType="BIGINT"/>
+        <result column="platform_goods_id" property="platformGoodsId" jdbcType="VARCHAR"/>
+        <result column="delivery_type_id" property="deliveryTypeId" jdbcType="BIGINT"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Where_Id_In">
+        where id in
+        <foreach collection="array" separator="," item="id" open="(" close=")">
+            #{id,jdbcType=BIGINT}
+        </foreach>
+    </sql>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, express_strategy_id, platform_goods_id, delivery_type_id, priority
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.baison.e3plus.basebiz.order.service.dao.model.example.AdvancedStrategyPlatformGoodsDetailExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from ord_strategy_platform_goods_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_strategy_platform_goods_detail
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByPrimaryKeyBatch" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_strategy_platform_goods_detail
+        <include refid="Where_Id_In"/>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ord_strategy_platform_goods_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByPrimaryKeyBatch" parameterType="java.lang.Long">
+        delete from ord_strategy_platform_goods_detail
+        <include refid="Where_Id_In"/>
+    </delete>
+    <insert id="insert"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+    insert into ord_strategy_platform_goods_detail (id, express_strategy_id, platform_goods_id, 
+      delivery_type_id, priority)
+    values (#{id,jdbcType=BIGINT}, #{expressStrategyId,jdbcType=BIGINT}, #{platformGoodsId,jdbcType=VARCHAR},
+      #{deliveryTypeId,jdbcType=BIGINT}, #{priority,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertBatch"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+        insert into ord_strategy_platform_goods_detail (id, express_strategy_id, platform_goods_id,
+        delivery_type_id, priority)
+        values
+        <foreach collection="array" item="item" separator=",">
+            (#{item.id,jdbcType=BIGINT}, #{item.expressStrategyId,jdbcType=BIGINT},
+            #{item.platformGoodsId,jdbcType=VARCHAR},
+            #{item.deliveryTypeId,jdbcType=BIGINT}, #{item.priority,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <insert id="insertSelective"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+        insert into ord_strategy_platform_goods_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="expressStrategyId != null">
+                express_strategy_id,
+            </if>
+            <if test="platformGoodsId != null">
+                platform_goods_id,
+            </if>
+            <if test="deliveryTypeId != null">
+                delivery_type_id,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="expressStrategyId != null">
+                #{expressStrategyId,jdbcType=BIGINT},
+            </if>
+            <if test="platformGoodsId != null">
+                #{platformGoodsId,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryTypeId != null">
+                #{deliveryTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+        update ord_strategy_platform_goods_detail
+        <set>
+            <if test="expressStrategyId != null">
+                express_strategy_id = #{expressStrategyId,jdbcType=BIGINT},
+            </if>
+            <if test="platformGoodsId != null">
+                platform_goods_id = #{platformGoodsId,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryTypeId != null">
+                delivery_type_id = #{deliveryTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeySelectiveBatch"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+        <foreach collection="array" item="item" separator=";">
+            update ord_strategy_platform_goods_detail
+            <set>
+                <if test="item.expressStrategyId != null">
+                    express_strategy_id = #{item.expressStrategyId,jdbcType=BIGINT},
+                </if>
+                <if test="item.platformGoodsId != null">
+                    platform_goods_id = #{item.platformGoodsId,jdbcType=VARCHAR},
+                </if>
+                <if test="item.deliveryTypeId != null">
+                    delivery_type_id = #{item.deliveryTypeId,jdbcType=BIGINT},
+                </if>
+                <if test="item.priority != null">
+                    priority = #{item.priority,jdbcType=INTEGER},
+                </if>
+            </set>
+            where id = #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    <update id="updateByPrimaryKey"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.adapter.AdvancedStrategyPlatformGoodsDetail">
+    update ord_strategy_platform_goods_detail
+    set express_strategy_id = #{expressStrategyId,jdbcType=BIGINT},
+      platform_goods_id = #{platformGoodsId,jdbcType=VARCHAR},
+      delivery_type_id = #{deliveryTypeId,jdbcType=BIGINT},
+      priority = #{priority,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <select id="countByExample" resultType="java.lang.Long">
+        select count(1) from ord_strategy_platform_goods_detail
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <delete id="deleteByExpressStrategyIdBatch" parameterType="java.lang.Long">
+        delete from ord_strategy_platform_goods_detail where
+        express_strategy_id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+</mapper>

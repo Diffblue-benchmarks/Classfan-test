@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.OrderExemptReviewStrategyMapper">
+    <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategy">
+        <id column="ID" property="orderExemptReviewStrategyId" jdbcType="BIGINT"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="VAL" property="val" jdbcType="VARCHAR"/>
+        <result column="VAL2" property="val2" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="LASK_DATE_UPDATE" property="laskDateUpdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID, CODE, NAME, VAL, VAL2, VAL3, REMARK, LASK_DATE_UPDATE
+    </sql>
+
+    <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_exempt_review_strategy
+        <where>CODE in
+            <foreach collection="array" item="code" open="(" close=")" separator=",">
+                #{code}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategy">
+        insert into ord_exempt_review_strategy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderExemptReviewStrategyId != null">
+                ID,
+            </if>
+            <if test="code != null">
+                CODE,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="val != null">
+                VAL,
+            </if>
+            <if test="val2 != null">
+                VAL2,
+            </if>
+            <if test="val3 != null">
+                VAL3,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            <if test="laskDateUpdate != null">
+                LASK_DATE_UPDATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderExemptReviewStrategyId != null">
+                #{orderExemptReviewStrategyId},
+            </if>
+            <if test="code != null">
+                #{code},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="val != null">
+                #{val},
+            </if>
+            <if test="val2 != null">
+                #{val2},
+            </if>
+            <if test="val3 != null">
+                #{val3},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="laskDateUpdate != null">
+                #{laskDateUpdate},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelectiveBatch"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.OrderExemptReviewStrategy">
+            update ord_exempt_review_strategy
+            <set>
+                <if test="code != null">
+                    CODE = #{code},
+                </if>
+                <if test="name != null">
+                    NAME = #{name},
+                </if>
+                <if test="val != null">
+                    VAL = #{val},
+                </if>
+                <if test="val2 != null">
+                    VAL2 = #{val2},
+                </if>
+                <if test="val3 != null">
+                    VAL3 = #{val3},
+                </if>
+                <if test="remark != null">
+                    REMARK = #{remark},
+                </if>
+                <if test="laskDateUpdate != null">
+                    LASK_DATE_UPDATE = #{laskDateUpdate},
+                </if>
+            </set>
+            where ID = #{orderExemptReviewStrategyId}
+    </update>
+
+</mapper>

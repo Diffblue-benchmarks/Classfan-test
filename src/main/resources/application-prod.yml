@@ -1,0 +1,4 @@
+#Please keep this profile and determine the profile value of the specific environment with the PaaS team.
+monitor:
+  open: true
+  eventhub-type: STREAM_SDK

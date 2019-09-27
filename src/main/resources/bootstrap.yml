@@ -1,0 +1,50 @@
+
+spring:
+  cloud:
+    config:
+      profile: ${spring.profiles.active},monitor
+      discovery:
+        enabled: true
+        service-id: ${service_springcloud_configserver}
+
+eureka:
+  instance:
+    metadata-map:
+      management:
+        context-path: ${server.servlet.context-path}/actuator
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: ${service_springcloud_eureka}
+    registry-fetch-interval-seconds: 15
+
+#  instance:
+#    lease-expiration-duration-in-seconds: 90 # 续约到期时间（默认90秒）
+#    lease-renewal-interval-in-seconds: 30 # 续约更新时间间隔（默认30秒）
+ribbon:
+  ServerListRefreshInterval: 5000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    prometheus:
+      enabled: true
+  health:
+    rabbit:
+      enabled: false
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+      enabled: true
+
+
+xxl:
+  job:
+    enabled: ${xxl_job_enabled:false}
+

@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.RetailReturnChasingGoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.RetailReturnChasingGoodsDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="return_bill_id" property="returnBillId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="DECIMAL" />
+    <result column="goods_qty" property="goodsQty" jdbcType="DECIMAL" />
+    <result column="goods_return_qty" property="goodsReturnQty" jdbcType="DECIMAL" />
+    <result column="goods_notice_in_qty" property="goodsNoticeInQty" jdbcType="DECIMAL" />
+    <result column="goods_actual_in_qty" property="goodsActualInQty" jdbcType="DECIMAL" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="reference_price" property="referencePrice" jdbcType="DECIMAL" />
+    <result column="shop_price" property="shopPrice" jdbcType="DECIMAL" />
+    <result column="goods_unit_price" property="goodsUnitPrice" jdbcType="DECIMAL" />
+    <result column="stc_price" property="stcPrice" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="discount_fee" property="discountFee" jdbcType="DECIMAL" />
+    <result column="payed_amount" property="payedAmount" jdbcType="DECIMAL" />
+    <result column="average_price" property="averagePrice" jdbcType="DECIMAL" />
+    <result column="average_payed_amount" property="averagePayedAmount" jdbcType="DECIMAL" />
+    <result column="average_discount_fee" property="averageDiscountFee" jdbcType="DECIMAL" />
+    <result column="sku" property="sku" jdbcType="VARCHAR" />
+    <result column="weigh" property="weigh" jdbcType="DECIMAL" />
+    <result column="return_qty" property="returnQty" jdbcType="DECIMAL" />
+    <result column="original_order_bill_no" property="originalOrderBillNo" jdbcType="VARCHAR" />
+    <result column="original_deal_code" property="originalDealCode" jdbcType="VARCHAR" />
+    <result column="single_product_id" property="singleProductId" jdbcType="BIGINT" />
+    <result column="back_number" property="backNumber" jdbcType="DECIMAL" />
+    <result column="gift_flg" property="giftFlg" jdbcType="VARCHAR" />
+    <result column="return_reason" property="returnReason" jdbcType="LONGVARCHAR" />
+    <result column="return_reason_ex" property="returnReasonEx" jdbcType="LONGVARCHAR" />
+    <result column="warehouse_id" property="wareHouseId" jdbcType="DECIMAL" />
+    <result column="whareatype_id" property="whareaTypeId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, return_bill_id, goods_id, goods_qty, goods_return_qty, goods_notice_in_qty, 
+    goods_actual_in_qty, cost_price, market_price, reference_price, shop_price, goods_unit_price, 
+    stc_price, discount, discount_fee, payed_amount, average_price, average_payed_amount, 
+    average_discount_fee, sku, weigh, return_qty, original_order_bill_no, original_deal_code, 
+    single_product_id, back_number, gift_flg, warehouse_id, whareatype_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    return_reason, return_reason_ex
+  </sql>
+  <select id="queryPage" parameterType="Map" 
+  	resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ord_retail_return_chasing_gds_de
+    <where>
+      <if test="returnBillId != null" >
+        and return_bill_id = #{returnBillId}
+      </if>
+      <if test="goodsId != null" >
+        and goods_id = #{goodsId}
+      </if>
+      <if test="goodsQty != null" >
+        and goods_qty = #{goodsQty}
+      </if>
+      <if test="goodsReturnQty != null" >
+        and goods_return_qty = #{goodsReturnQty}
+      </if>
+      <if test="goodsNoticeInQty != null" >
+        and goods_notice_in_qty = #{goodsNoticeInQty}
+      </if>
+      <if test="goodsActualInQty != null" >
+        and goods_actual_in_qty = #{goodsActualInQty}
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice}
+      </if>
+      <if test="marketPrice != null" >
+        and market_price = #{marketPrice}
+      </if>
+      <if test="referencePrice != null" >
+        and reference_price = #{referencePrice}
+      </if>
+      <if test="shopPrice != null" >
+        and shop_price = #{shopPrice}
+      </if>
+      <if test="goodsUnitPrice != null" >
+        and goods_unit_price = #{goodsUnitPrice}
+      </if>
+      <if test="stcPrice != null" >
+        and stc_price = #{stcPrice}
+      </if>
+      <if test="discount != null" >
+        and discount = #{discount}
+      </if>
+      <if test="discountFee != null" >
+        and discount_fee = #{discountFee}
+      </if>
+      <if test="payedAmount != null" >
+        and payed_amount = #{payedAmount}
+      </if>
+      <if test="averagePrice != null" >
+        and average_price = #{averagePrice}
+      </if>
+      <if test="averagePayedAmount != null" >
+        and average_payed_amount = #{averagePayedAmount}
+      </if>
+      <if test="averageDiscountFee != null" >
+        and average_discount_fee = #{averageDiscountFee}
+      </if>
+      <if test="sku != null" >
+        and sku = #{sku}
+      </if>
+      <if test="weigh != null" >
+        and weigh = #{weigh}
+      </if>
+      <if test="returnQty != null" >
+        and return_qty = #{returnQty}
+      </if>
+      <if test="originalOrderBillNo != null" >
+        and original_order_bill_no = #{originalOrderBillNo}
+      </if>
+      <if test="originalDealCode != null" >
+        and original_deal_code = #{originalDealCode}
+      </if>
+      <if test="singleProductId != null" >
+        and single_product_id = #{singleProductId}
+      </if>
+      <if test="backNumber != null" >
+        and back_number = #{backNumber}
+      </if>
+      <if test="giftFlg != null" >
+        and gift_flg = #{giftFlg}
+      </if>
+      <if test="returnReason != null" >
+        and return_reason = #{returnReason}
+      </if>
+      <if test="returnReasonEx != null" >
+        and return_reason_ex = #{returnReasonEx}
+      </if>
+      <if test="wareHouseId != null" >
+        and warehouse_id = #{wareHouseId}
+      </if>
+      <if test="whareaTypeId != null" >
+        and whareatype_id = #{whareaTypeId}
+      </if>
+    </where>
+   <if test="stratRow != null and endRow != null">
+      limit #{stratRow},#{endRow}
+    </if>
+  </select>
+  <select id="getListCount" parameterType="Map" 
+  	resultType="java.lang.Long">
+  	select count(1) from ord_retail_return_chasing_gds_de
+  	<where>
+      <if test="returnBillId != null" >
+        and return_bill_id = #{returnBillId}
+      </if>
+      <if test="goodsId != null" >
+        and goods_id = #{goodsId}
+      </if>
+      <if test="goodsQty != null" >
+        and goods_qty = #{goodsQty}
+      </if>
+      <if test="goodsReturnQty != null" >
+        and goods_return_qty = #{goodsReturnQty}
+      </if>
+      <if test="goodsNoticeInQty != null" >
+        and goods_notice_in_qty = #{goodsNoticeInQty}
+      </if>
+      <if test="goodsActualInQty != null" >
+        and goods_actual_in_qty = #{goodsActualInQty}
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice}
+      </if>
+      <if test="marketPrice != null" >
+        and market_price = #{marketPrice}
+      </if>
+      <if test="referencePrice != null" >
+        and reference_price = #{referencePrice}
+      </if>
+      <if test="shopPrice != null" >
+        and shop_price = #{shopPrice}
+      </if>
+      <if test="goodsUnitPrice != null" >
+        and goods_unit_price = #{goodsUnitPrice}
+      </if>
+      <if test="stcPrice != null" >
+        and stc_price = #{stcPrice}
+      </if>
+      <if test="discount != null" >
+        and discount = #{discount}
+      </if>
+      <if test="discountFee != null" >
+        and discount_fee = #{discountFee}
+      </if>
+      <if test="payedAmount != null" >
+        and payed_amount = #{payedAmount}
+      </if>
+      <if test="averagePrice != null" >
+        and average_price = #{averagePrice}
+      </if>
+      <if test="averagePayedAmount != null" >
+        and average_payed_amount = #{averagePayedAmount}
+      </if>
+      <if test="averageDiscountFee != null" >
+        and average_discount_fee = #{averageDiscountFee}
+      </if>
+      <if test="sku != null" >
+        and sku = #{sku}
+      </if>
+      <if test="weigh != null" >
+        and weigh = #{weigh}
+      </if>
+      <if test="returnQty != null" >
+        and return_qty = #{returnQty}
+      </if>
+      <if test="originalOrderBillNo != null" >
+        and original_order_bill_no = #{originalOrderBillNo}
+      </if>
+      <if test="originalDealCode != null" >
+        and original_deal_code = #{originalDealCode}
+      </if>
+      <if test="singleProductId != null" >
+        and single_product_id = #{singleProductId}
+      </if>
+      <if test="backNumber != null" >
+        and back_number = #{backNumber}
+      </if>
+      <if test="giftFlg != null" >
+        and gift_flg = #{giftFlg}
+      </if>
+      <if test="returnReason != null" >
+        and return_reason = #{returnReason}
+      </if>
+      <if test="returnReasonEx != null" >
+        and return_reason_ex = #{returnReasonEx}
+      </if>
+      <if test="wareHouseId != null" >
+        and warehouse_id = #{wareHouseId}
+      </if>
+      <if test="whareaTypeId != null" >
+        and whareatype_id = #{whareaTypeId}
+      </if>
+    </where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ord_retail_return_chasing_gds_de
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.List" >
+    delete from ord_retail_return_chasing_gds_de
+    where id in
+    <foreach item="item" index="index" collection="list" open="("
+        separator="," close=")">
+        #{item,jdbcType=BIGINT}
+    </foreach>
+  </delete>
+   <delete id="deleteByReturnId" parameterType="java.util.List" >
+    delete from ord_retail_return_chasing_gds_de
+    where return_bill_id in
+    <foreach item="item" index="index" collection="list" open="("
+        separator="," close=")">
+        #{item,jdbcType=BIGINT}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailReturnChasingGoodsDetail" >
+    insert into ord_retail_return_chasing_gds_de (id, return_bill_id, 
+      goods_id, goods_qty, goods_return_qty, 
+      goods_notice_in_qty, goods_actual_in_qty, cost_price, 
+      market_price, reference_price, shop_price, 
+      goods_unit_price, stc_price, discount, 
+      discount_fee, payed_amount, average_price, 
+      average_payed_amount, average_discount_fee, 
+      sku, weigh, return_qty, 
+      original_order_bill_no, original_deal_code, 
+      single_product_id, back_number, gift_flg, 
+      return_reason, return_reason_ex, warehouse_id, whareatype_id)
+    values (#{id,jdbcType=BIGINT}, #{returnBillId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=DECIMAL}, #{goodsQty,jdbcType=DECIMAL}, #{goodsReturnQty,jdbcType=DECIMAL}, 
+      #{goodsNoticeInQty,jdbcType=DECIMAL}, #{goodsActualInQty,jdbcType=DECIMAL}, #{costPrice,jdbcType=DECIMAL}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{referencePrice,jdbcType=DECIMAL}, #{shopPrice,jdbcType=DECIMAL}, 
+      #{goodsUnitPrice,jdbcType=DECIMAL}, #{stcPrice,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{discountFee,jdbcType=DECIMAL}, #{payedAmount,jdbcType=DECIMAL}, #{averagePrice,jdbcType=DECIMAL}, 
+      #{averagePayedAmount,jdbcType=DECIMAL}, #{averageDiscountFee,jdbcType=DECIMAL}, 
+      #{sku,jdbcType=VARCHAR}, #{weigh,jdbcType=DECIMAL}, #{returnQty,jdbcType=DECIMAL}, 
+      #{originalOrderBillNo,jdbcType=VARCHAR}, #{originalDealCode,jdbcType=VARCHAR}, 
+      #{singleProductId,jdbcType=BIGINT}, #{backNumber,jdbcType=DECIMAL}, #{giftFlg,jdbcType=VARCHAR}, 
+      #{returnReason,jdbcType=LONGVARCHAR}, #{returnReasonEx,jdbcType=LONGVARCHAR}, #{wareHouseId,jdbcType=DECIMAL},
+      #{whareaTypeId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="java.util.List" >
+  	<foreach item="item" index="index" collection="list" separator=";">
+  		insert into ord_retail_return_chasing_gds_de
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+		  <if test="item.id != null" >
+		    id,
+		  </if>
+		  <if test="item.returnBillId != null" >
+		    return_bill_id,
+		  </if>
+		  <if test="item.goodsId != null" >
+		    goods_id,
+		  </if>
+		  <if test="item.goodsQty != null" >
+		    goods_qty,
+		  </if>
+		  <if test="item.goodsReturnQty != null" >
+		    goods_return_qty,
+		  </if>
+		  <if test="item.goodsNoticeInQty != null" >
+		    goods_notice_in_qty,
+		  </if>
+		  <if test="item.goodsActualInQty != null" >
+		    goods_actual_in_qty,
+		  </if>
+		  <if test="item.costPrice != null" >
+		    cost_price,
+		  </if>
+		  <if test="item.marketPrice != null" >
+		    market_price,
+		  </if>
+		  <if test="item.referencePrice != null" >
+		    reference_price,
+		  </if>
+		  <if test="item.shopPrice != null" >
+		    shop_price,
+		  </if>
+		  <if test="item.goodsUnitPrice != null" >
+		    goods_unit_price,
+		  </if>
+		  <if test="item.stcPrice != null" >
+		    stc_price,
+		  </if>
+		  <if test="item.discount != null" >
+		    discount,
+		  </if>
+		  <if test="item.discountFee != null" >
+		    discount_fee,
+		  </if>
+		  <if test="item.payedAmount != null" >
+		    payed_amount,
+		  </if>
+		  <if test="item.averagePrice != null" >
+		    average_price,
+		  </if>
+		  <if test="item.averagePayedAmount != null" >
+		    average_payed_amount,
+		  </if>
+		  <if test="item.averageDiscountFee != null" >
+		    average_discount_fee,
+		  </if>
+		  <if test="item.sku != null" >
+		    sku,
+		  </if>
+		  <if test="item.weigh != null" >
+		    weigh,
+		  </if>
+		  <if test="item.returnQty != null" >
+		    return_qty,
+		  </if>
+		  <if test="item.originalOrderBillNo != null" >
+		    original_order_bill_no,
+		  </if>
+		  <if test="item.originalDealCode != null" >
+		    original_deal_code,
+		  </if>
+		  <if test="item.singleProductId != null" >
+		    single_product_id,
+		  </if>
+		  <if test="item.backNumber != null" >
+		    back_number,
+		  </if>
+		  <if test="item.giftFlg != null" >
+		    gift_flg,
+		  </if>
+		  <if test="item.returnReason != null" >
+		    return_reason,
+		  </if>
+		  <if test="item.returnReasonEx != null" >
+		    return_reason_ex,
+		  </if>
+		  <if test="item.wareHouseId != null" >
+		    warehouse_id,
+		  </if>
+		  <if test="item.whareaTypeId != null" >
+		    whareatype_id,
+		  </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+		  <if test="item.id != null" >
+		    #{item.id,jdbcType=BIGINT},
+		  </if>
+		  <if test="item.returnBillId != null" >
+		    #{item.returnBillId,jdbcType=BIGINT},
+		  </if>
+		  <if test="item.goodsId != null" >
+		    #{item.goodsId,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.goodsQty != null" >
+		    #{item.goodsQty,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.goodsReturnQty != null" >
+		    #{item.goodsReturnQty,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.goodsNoticeInQty != null" >
+		    #{item.goodsNoticeInQty,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.goodsActualInQty != null" >
+		    #{item.goodsActualInQty,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.costPrice != null" >
+		    #{item.costPrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.marketPrice != null" >
+		    #{item.marketPrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.referencePrice != null" >
+		    #{item.referencePrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.shopPrice != null" >
+		    #{item.shopPrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.goodsUnitPrice != null" >
+		    #{item.goodsUnitPrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.stcPrice != null" >
+		    #{item.stcPrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.discount != null" >
+		    #{item.discount,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.discountFee != null" >
+		    #{item.discountFee,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.payedAmount != null" >
+		    #{item.payedAmount,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.averagePrice != null" >
+		    #{item.averagePrice,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.averagePayedAmount != null" >
+		    #{item.averagePayedAmount,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.averageDiscountFee != null" >
+		    #{item.averageDiscountFee,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.sku != null" >
+		    #{item.sku,jdbcType=VARCHAR},
+		  </if>
+		  <if test="item.weigh != null" >
+		    #{item.weigh,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.returnQty != null" >
+		    #{item.returnQty,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.originalOrderBillNo != null" >
+		    #{item.originalOrderBillNo,jdbcType=VARCHAR},
+		  </if>
+		  <if test="item.originalDealCode != null" >
+		    #{item.originalDealCode,jdbcType=VARCHAR},
+		  </if>
+		  <if test="item.singleProductId != null" >
+		    #{item.singleProductId,jdbcType=BIGINT},
+		  </if>
+		  <if test="item.backNumber != null" >
+		    #{item.backNumber,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.giftFlg != null" >
+		    #{item.giftFlg,jdbcType=VARCHAR},
+		  </if>
+		  <if test="item.returnReason != null" >
+		    #{item.returnReason,jdbcType=LONGVARCHAR},
+		  </if>
+		  <if test="item.returnReasonEx != null" >
+		    #{item.returnReasonEx,jdbcType=LONGVARCHAR},
+		  </if>
+		  <if test="item.wareHouseId != null" >
+		    #{item.wareHouseId,jdbcType=DECIMAL},
+		  </if>
+		  <if test="item.whareaTypeId != null" >
+		    whareatype_id,
+		    #{item.whareaTypeId,jdbcType=DECIMAL},
+		  </if>
+		</trim>
+  	</foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailReturnChasingGoodsDetail" >
+    update ord_retail_return_chasing_gds_de
+    <set >
+      <if test="returnBillId != null" >
+        return_bill_id = #{returnBillId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQty != null" >
+        goods_qty = #{goodsQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsReturnQty != null" >
+        goods_return_qty = #{goodsReturnQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsNoticeInQty != null" >
+        goods_notice_in_qty = #{goodsNoticeInQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsActualInQty != null" >
+        goods_actual_in_qty = #{goodsActualInQty,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="referencePrice != null" >
+        reference_price = #{referencePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shopPrice != null" >
+        shop_price = #{shopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsUnitPrice != null" >
+        goods_unit_price = #{goodsUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stcPrice != null" >
+        stc_price = #{stcPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null" >
+        discount_fee = #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payedAmount != null" >
+        payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="averagePrice != null" >
+        average_price = #{averagePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="averagePayedAmount != null" >
+        average_payed_amount = #{averagePayedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="averageDiscountFee != null" >
+        average_discount_fee = #{averageDiscountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sku != null" >
+        sku = #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="weigh != null" >
+        weigh = #{weigh,jdbcType=DECIMAL},
+      </if>
+      <if test="returnQty != null" >
+        return_qty = #{returnQty,jdbcType=DECIMAL},
+      </if>
+      <if test="originalOrderBillNo != null" >
+        original_order_bill_no = #{originalOrderBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originalDealCode != null" >
+        original_deal_code = #{originalDealCode,jdbcType=VARCHAR},
+      </if>
+      <if test="singleProductId != null" >
+        single_product_id = #{singleProductId,jdbcType=BIGINT},
+      </if>
+      <if test="backNumber != null" >
+        back_number = #{backNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="giftFlg != null" >
+        gift_flg = #{giftFlg,jdbcType=VARCHAR},
+      </if>
+      <if test="returnReason != null" >
+        return_reason = #{returnReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="returnReasonEx != null" >
+        return_reason_ex = #{returnReasonEx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wareHouseId != null" >
+        warehouse_id = #{wareHouseId,jdbcType=DECIMAL},
+      </if>
+      <if test="whareaTypeId != null" >
+        whareatype_id = #{whareaTypeId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailReturnChasingGoodsDetail" >
+    update ord_retail_return_chasing_gds_de
+    set return_bill_id = #{returnBillId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=DECIMAL},
+      goods_qty = #{goodsQty,jdbcType=DECIMAL},
+      goods_return_qty = #{goodsReturnQty,jdbcType=DECIMAL},
+      goods_notice_in_qty = #{goodsNoticeInQty,jdbcType=DECIMAL},
+      goods_actual_in_qty = #{goodsActualInQty,jdbcType=DECIMAL},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      reference_price = #{referencePrice,jdbcType=DECIMAL},
+      shop_price = #{shopPrice,jdbcType=DECIMAL},
+      goods_unit_price = #{goodsUnitPrice,jdbcType=DECIMAL},
+      stc_price = #{stcPrice,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      discount_fee = #{discountFee,jdbcType=DECIMAL},
+      payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      average_price = #{averagePrice,jdbcType=DECIMAL},
+      average_payed_amount = #{averagePayedAmount,jdbcType=DECIMAL},
+      average_discount_fee = #{averageDiscountFee,jdbcType=DECIMAL},
+      sku = #{sku,jdbcType=VARCHAR},
+      weigh = #{weigh,jdbcType=DECIMAL},
+      return_qty = #{returnQty,jdbcType=DECIMAL},
+      original_order_bill_no = #{originalOrderBillNo,jdbcType=VARCHAR},
+      original_deal_code = #{originalDealCode,jdbcType=VARCHAR},
+      single_product_id = #{singleProductId,jdbcType=BIGINT},
+      back_number = #{backNumber,jdbcType=DECIMAL},
+      gift_flg = #{giftFlg,jdbcType=VARCHAR},
+      return_reason = #{returnReason,jdbcType=LONGVARCHAR},
+      return_reason_ex = #{returnReasonEx,jdbcType=LONGVARCHAR},
+      warehouse_id = #{wareHouseId,jdbcType=DECIMAL},
+      whareatype_id = #{whareaTypeId,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsertSelective" parameterType="java.util.List">
+		<foreach item="item" index="index" collection="list" separator=";">
+			insert into ord_retail_return_chasing_gds_de
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="item.id != null">
+    	            id,
+    			</if>
+                <if test="item.returnBillId != null">
+    	            return_bill_id,
+    			</if>
+                <if test="item.goodsId != null">
+    	            goods_id,
+    			</if>
+                <if test="item.goodsQty != null">
+    	            goods_qty,
+    			</if>
+                <if test="item.goodsReturnQty != null">
+    	            goods_return_qty,
+    			</if>
+                <if test="item.goodsNoticeInQty != null">
+    	            goods_notice_in_qty,
+    			</if>
+                <if test="item.goodsActualInQty != null">
+    	            goods_actual_in_qty,
+    			</if>
+                <if test="item.costPrice != null">
+    	            cost_price,
+    			</if>
+                <if test="item.marketPrice != null">
+    	            market_price,
+    			</if>
+                <if test="item.referencePrice != null">
+    	            reference_price,
+    			</if>
+                <if test="item.shopPrice != null">
+    	            shop_price,
+    			</if>
+                <if test="item.goodsUnitPrice != null">
+    	            goods_unit_price,
+    			</if>
+                <if test="item.stcPrice != null">
+    	            stc_price,
+    			</if>
+                <if test="item.discount != null">
+    	            discount,
+    			</if>
+                <if test="item.discountFee != null">
+    	            discount_fee,
+    			</if>
+                <if test="item.payedAmount != null">
+    	            payed_amount,
+    			</if>
+                <if test="item.averagePrice != null">
+    	            average_price,
+    			</if>
+                <if test="item.averagePayedAmount != null">
+    	            average_payed_amount,
+    			</if>
+                <if test="item.averageDiscountFee != null">
+    	            average_discount_fee,
+    			</if>
+                <if test="item.sku != null">
+    	            sku,
+    			</if>
+                <if test="item.weigh != null">
+    	            weigh,
+    			</if>
+                <if test="item.returnQty != null">
+    	            return_qty,
+    			</if>
+                <if test="item.returnReason != null">
+    	            return_reason,
+    			</if>
+                <if test="item.returnReasonEx != null">
+    	            return_reason_ex,
+    			</if>
+                <if test="item.originalOrderBillNo != null">
+    	            original_order_bill_no,
+    			</if>
+                <if test="item.originalDealCode != null">
+    	            original_deal_code,
+    			</if>
+                <if test="item.singleProductId != null">
+    	            single_product_id,
+    			</if>
+                <if test="item.backNumber != null">
+    	            back_number,
+    			</if>
+                <if test="item.giftFlg != null">
+    	            gift_flg,
+    			</if>
+    			<if test="item.wareHouseId != null">
+    	            warehouse_id,
+    			</if>
+    			<if test="item.whareaTypeId != null">
+    	            whareatype_id,
+    			</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+              <if test="item.id != null" >
+			    #{item.id,jdbcType=BIGINT},
+			  </if>
+			  <if test="item.returnBillId != null" >
+			    #{item.returnBillId,jdbcType=BIGINT},
+			  </if>
+			  <if test="item.goodsId != null" >
+			    #{item.goodsId,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.goodsQty != null" >
+			    #{item.goodsQty,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.goodsReturnQty != null" >
+			    #{item.goodsReturnQty,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.goodsNoticeInQty != null" >
+			    #{item.goodsNoticeInQty,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.goodsActualInQty != null" >
+			    #{item.goodsActualInQty,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.costPrice != null" >
+			    #{item.costPrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.marketPrice != null" >
+			    #{item.marketPrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.referencePrice != null" >
+			    #{item.referencePrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.shopPrice != null" >
+			    #{item.shopPrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.goodsUnitPrice != null" >
+			    #{item.goodsUnitPrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.stcPrice != null" >
+			    #{item.stcPrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.discount != null" >
+			    #{item.discount,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.discountFee != null" >
+			    #{item.discountFee,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.payedAmount != null" >
+			    #{item.payedAmount,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.averagePrice != null" >
+			    #{item.averagePrice,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.averagePayedAmount != null" >
+			    #{item.averagePayedAmount,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.averageDiscountFee != null" >
+			    #{item.averageDiscountFee,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.sku != null" >
+			    #{item.sku,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.weigh != null" >
+			    #{item.weigh,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.returnQty != null" >
+			    #{item.returnQty,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.returnReason != null" >
+			    #{item.returnReason,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.returnReasonEx != null" >
+			    #{item.returnReasonEx,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.originalOrderBillNo != null" >
+			    #{item.originalOrderBillNo,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.originalDealCode != null" >
+			    #{item.originalDealCode,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.singleProductId != null" >
+			    #{item.singleProductId,jdbcType=BIGINT},
+			  </if>
+			  <if test="item.backNumber != null" >
+			    #{item.backNumber,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.giftFlg != null" >
+			    #{item.giftFlg,jdbcType=VARCHAR},
+			  </if>
+			  <if test="item.wareHouseId != null" >
+			    #{item.wareHouseId,jdbcType=DECIMAL},
+			  </if>
+			  <if test="item.whareaTypeId != null" >
+			    #{item.whareaTypeId,jdbcType=DECIMAL},
+			  </if>
+			</trim>
+		</foreach>
+	</insert>
+    <update id="batchUpdateByPrimaryKeySelective" parameterType="java.util.List">
+    update ord_retail_return_chasing_gds_de
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.id != null">
+                    when id=#{item.id} then #{item.id}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="return_bill_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.returnBillId != null">
+                    when id=#{item.id} then #{item.returnBillId}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsId != null">
+                    when id=#{item.id} then #{item.goodsId}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_qty =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsQty != null">
+                    when id=#{item.id} then #{item.goodsQty}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_return_qty =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsReturnQty != null">
+                    when id=#{item.id} then #{item.goodsReturnQty}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_notice_in_qty =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsNoticeInQty != null">
+                    when id=#{item.id} then #{item.goodsNoticeInQty}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_actual_in_qty =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsActualInQty != null">
+                    when id=#{item.id} then #{item.goodsActualInQty}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="cost_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.costPrice != null">
+                    when id=#{item.id} then #{item.costPrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="market_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.marketPrice != null">
+                    when id=#{item.id} then #{item.marketPrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="reference_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.referencePrice != null">
+                    when id=#{item.id} then #{item.referencePrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="shop_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.shopPrice != null">
+                    when id=#{item.id} then #{item.shopPrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="goods_unit_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.goodsUnitPrice != null">
+                    when id=#{item.id} then #{item.goodsUnitPrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="stc_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.stcPrice != null">
+                    when id=#{item.id} then #{item.stcPrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="discount =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.discount != null">
+                    when id=#{item.id} then #{item.discount}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="discount_fee =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.discountFee != null">
+                    when id=#{item.id} then #{item.discountFee}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="payed_amount =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.payedAmount != null">
+                    when id=#{item.id} then #{item.payedAmount}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="average_price =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.averagePrice != null">
+                    when id=#{item.id} then #{item.averagePrice}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="average_payed_amount =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.averagePayedAmount != null">
+                    when id=#{item.id} then #{item.averagePayedAmount}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="average_discount_fee =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.averageDiscountFee != null">
+                    when id=#{item.id} then #{item.averageDiscountFee}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="sku =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.sku != null">
+                    when id=#{item.id} then #{item.sku}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="weigh =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.weigh != null">
+                    when id=#{item.id} then #{item.weigh}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="return_qty =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.returnQty != null">
+                    when id=#{item.id} then #{item.returnQty}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="return_reason =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.returnReason != null">
+                    when id=#{item.id} then #{item.returnReason}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="return_reason_ex =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.returnReasonEx != null">
+                    when id=#{item.id} then #{item.returnReasonEx}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="original_order_bill_no =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.originalOrderBillNo != null">
+                    when id=#{item.id} then #{item.originalOrderBillNo}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="original_deal_code =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.originalDealCode != null">
+                    when id=#{item.id} then #{item.originalDealCode}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="single_product_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.singleProductId != null">
+                    when id=#{item.id} then #{item.singleProductId}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="back_number =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.backNumber != null">
+                    when id=#{item.id} then #{item.backNumber}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="gift_flg =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.giftFlg != null">
+                    when id=#{item.id} then #{item.giftFlg}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="warehouse_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.wareHouseId != null">
+                    when id=#{item.id} then #{item.wareHouseId}
+                  </if>
+                </foreach>
+            </trim>
+            <trim prefix="whareatype_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                  <if test="item.whareaTypeId != null">
+                    when id=#{item.id} then #{item.whareaTypeId}
+                  </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+        #{item.id}
+        </foreach>
+    </update>
+</mapper>

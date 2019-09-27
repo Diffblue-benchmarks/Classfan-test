@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.WmsOrderPassedBackMapper">
+    <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="billType" property="billType" jdbcType="VARCHAR"/>
+        <result column="billNo" property="billNo" jdbcType="VARCHAR"/>
+        <result column="wmsBillNo" property="wmsBillNo" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="tryCount" property="tryCount" jdbcType="INTEGER"/>
+        <result column="createDate" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="createBy" property="createBy" jdbcType="VARCHAR"/>
+        <result column="modifyDate" property="modifyDate" jdbcType="TIMESTAMP"/>
+        <result column="modifyBy" property="modifyBy" jdbcType="VARCHAR"/>
+        <result column="postData" property="postData" jdbcType="VARCHAR"/>
+        <result column="result" property="result" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, billType, billNo, wmsBillNo, status, tryCount, createDate, createBy, modifyDate, modifyBy, postData, result
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_wms_passedback
+        where id = (#{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ord_wms_passedback
+    where id = (#{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+    insert into ord_wms_passedback (id, billType, billNo, wmsBillNo,
+      status, tryCount, createDate, 
+      createBy, modifyDate, modifyBy, 
+      postData, result)
+    values ((#{id,jdbcType=BIGINT}, #{billType,jdbcType=VARCHAR}, #{billNo,jdbcType=VARCHAR}, #{wmsBillNo,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR}, #{tryCount,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP},
+      #{createBy,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR},
+    #{postData,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+        insert into ord_wms_passedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="billType != null">
+                billType,
+            </if>
+            <if test="billNo != null">
+                billNo,
+            </if>
+            <if test="wmsBillNo != null">
+                wmsBillNo,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="tryCount != null">
+                tryCount,
+            </if>
+            <if test="createDate != null">
+                createDate,
+            </if>
+            <if test="createBy != null">
+                createBy,
+            </if>
+            <if test="modifyDate != null">
+                modifyDate,
+            </if>
+            <if test="modifyBy != null">
+                modifyBy,
+            </if>
+            <if test="postData != null">
+                postData,
+            </if>
+            <if test="result != null">
+                result,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="billType != null">
+                #{billType,jdbcType=VARCHAR},
+            </if>
+            <if test="billNo != null">
+                #{billNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wmsBillNo != null">
+                #{wmsBillNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="tryCount != null">
+                #{tryCount,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyBy != null">
+                #{modifyBy,jdbcType=VARCHAR},
+            </if>
+            <if test="postData != null">
+                #{postData,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                #{result,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+        update ord_wms_passedback
+        <set>
+            <if test="billType != null">
+                billType = #{billType,jdbcType=VARCHAR},
+            </if>
+            <if test="billNo != null">
+                billNo = #{billNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wmsBillNo != null">
+                wmsBillNo = #{wmsBillNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="tryCount != null">
+                tryCount = #{tryCount,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                modifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyBy != null">
+                modifyBy = #{modifyBy,jdbcType=VARCHAR},
+            </if>
+            <if test="postData != null">
+                postData = #{postData,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                result = #{result,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = (#{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+    update ord_wms_passedback
+    set billType = #{billType,jdbcType=VARCHAR},
+      billNo = #{billNo,jdbcType=VARCHAR},
+      wmsBillNo = #{wmsBillNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      tryCount = #{tryCount,jdbcType=INTEGER},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      createBy = #{createBy,jdbcType=VARCHAR},
+      modifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+      modifyBy = #{modifyBy,jdbcType=VARCHAR}
+    where id = (#{id,jdbcType=BIGINT}
+  </update>
+    <select id="getListCount" parameterType="Map" resultType="java.lang.Integer">
+        select count(0) from ord_wms_passedback
+        where 1=1
+        <if test="billType != null">
+            and billType = #{billType,jdbcType=VARCHAR}
+        </if>
+        <if test="billNo != null">
+            and billNo = #{billNo,jdbcType=VARCHAR}
+        </if>
+        <if test="wmsBillNo != null">
+            and wmsBillNo = #{wmsBillNo,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status in
+        	<foreach item="status" index="index" collection="status" open="("
+				separator="," close=")">
+				#{status,jdbcType=VARCHAR}
+			</foreach>
+        </if>
+        <if test="tryCount != null">
+            and tryCount &lt; #{tryCount,jdbcType=INTEGER}
+        </if>
+        <if test="createDate != null">
+            and createDate = #{createDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createBy != null">
+            and createBy = #{createBy,jdbcType=VARCHAR}
+        </if>
+        <if test="modifyDate != null">
+            and modifyDate = #{modifyDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="modifyBy != null">
+            and modifyBy = #{modifyBy,jdbcType=VARCHAR}
+        </if>
+        <if test="postData != null">
+            and postData = #{postData,jdbcType=VARCHAR}
+        </if>
+        <if test="result != null">
+            and result = #{result,jdbcType=VARCHAR}
+        </if>
+        <if test="beforeDate != null">
+            or (billType = #{billType,jdbcType=VARCHAR} and status =1 and modifyDate &lt; #{beforeDate,jdbcType=TIMESTAMP})
+        </if>
+    </select>
+    <select id="querPage" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_wms_passedback
+        where 1=1
+        <if test="billType != null">
+            and billType = #{billType,jdbcType=VARCHAR}
+        </if>
+        <if test="billNo != null">
+            and billNo = #{billNo,jdbcType=VARCHAR}
+        </if>
+        <if test="wmsBillNo != null">
+            and wmsBillNo = #{wmsBillNo,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status in
+        	<foreach item="status" index="index" collection="status" open="("
+				separator="," close=")">
+				#{status,jdbcType=VARCHAR}
+			</foreach>
+        </if>
+        <if test="tryCount != null">
+            and tryCount &lt; #{tryCount,jdbcType=INTEGER}
+        </if>
+        <if test="createDate != null">
+            and createDate = #{createDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createBy != null">
+            and createBy = #{createBy,jdbcType=VARCHAR}
+        </if>
+        <if test="modifyDate != null">
+            and modifyDate = #{modifyDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="modifyBy != null">
+            and modifyBy = #{modifyBy,jdbcType=VARCHAR}
+        </if>
+        <if test="postData != null">
+            and postData = #{postData,jdbcType=VARCHAR}
+        </if>
+        <if test="result != null">
+            and result = #{result,jdbcType=VARCHAR}
+        </if>
+        <if test="beforeDate != null">
+            or (billType = #{billType,jdbcType=VARCHAR} and status =1 and modifyDate &lt; #{beforeDate,jdbcType=TIMESTAMP})
+        </if>
+        <if test="stratRow != null and endRow != null">
+            limit #{stratRow},#{endRow}
+        </if>
+    </select>
+    <insert id="saveBatch" parameterType="java.lang.String">
+        insert into ord_wms_passedback (id, billType, billNo, wmsBillNo,
+        status, tryCount, createDate,
+        createBy, modifyDate, modifyBy,
+        postData, result)
+        values
+        <foreach collection="array" separator="," index="index" item="item">
+            (#{item.id,jdbcType=BIGINT},
+            #{item.billType,jdbcType=VARCHAR},
+            #{item.billNo,jdbcType=VARCHAR},
+            #{item.wmsBillNo,jdbcType=VARCHAR},
+            #{item.status,jdbcType=VARCHAR},
+            #{item.tryCount,jdbcType=INTEGER},
+            #{item.createDate,jdbcType=TIMESTAMP},
+            #{item.createBy,jdbcType=VARCHAR},
+            #{item.modifyDate,jdbcType=TIMESTAMP},
+            #{item.modifyBy,jdbcType=VARCHAR},
+            #{item.postData,jdbcType=VARCHAR},
+            #{item.result,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <update id="updateBatch" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedWmsOrderPassedBack">
+        <foreach item="item" index="index" collection="list" separator=";">
+            update ord_wms_passedback
+            <set>
+                <if test="item.billType != null">
+                    billType = #{item.billType,jdbcType=VARCHAR},
+                </if>
+                <if test="item.billNo != null">
+                    billNo = #{item.billNo,jdbcType=VARCHAR},
+                </if>
+                <if test="item.wmsBillNo != null">
+                    wmsBillNo = #{item.wmsBillNo,jdbcType=VARCHAR},
+                </if>
+                <if test="item.status != null">
+                    status = #{item.status,jdbcType=VARCHAR},
+                </if>
+                <if test="item.tryCount != null">
+                    tryCount = #{item.tryCount,jdbcType=INTEGER},
+                </if>
+                <if test="item.createDate != null">
+                    createDate = #{item.createDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.createBy != null">
+                    createBy = #{item.createBy,jdbcType=VARCHAR},
+                </if>
+                <if test="item.modifyDate != null">
+                    modifyDate = #{item.modifyDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.modifyBy != null">
+                    modifyBy = #{item.modifyBy,jdbcType=VARCHAR},
+                </if>
+                <if test="item.postData != null">
+                    postData = #{item.postData,jdbcType=VARCHAR},
+                </if>
+                <if test="item.result != null">
+                    result = #{item.result,jdbcType=VARCHAR},
+                </if>
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <update id="updateBatchById" parameterType="Map">
+        update ord_wms_passedback set status=#{status,jdbcType=VARCHAR},modifyDate=#{modifyDate,jdbcType=TIMESTAMP}
+        where id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

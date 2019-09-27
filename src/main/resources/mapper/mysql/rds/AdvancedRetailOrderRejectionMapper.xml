@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.AdvancedRetailOrderRejectionMapper">
+    <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.AdvancedRetailOrderRejection">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="shippingNo" property="shippingno" jdbcType="VARCHAR"/>
+        <result column="shippingSn" property="shippingsn" jdbcType="VARCHAR"/>
+        <result column="isPush" property="ispush" jdbcType="VARCHAR"/>
+        <result column="createDate" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="createBy" property="createby" jdbcType="VARCHAR"/>
+        <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP"/>
+        <result column="modifyBy" property="modifyby" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, shippingNo, shippingSn, isPush, createDate, createBy, modifyDate, modifyBy
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from ord_retailord_rejection
+        where id = (#{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ord_retailord_rejection
+    where id = (#{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedRetailOrderRejection">
+    insert into ord_retailord_rejection (id, shippingNo, shippingSn, 
+      isPush, createDate, createBy, 
+      modifyDate, modifyBy)
+    values ((#{id,jdbcType=BIGINT}, #{shippingno,jdbcType=VARCHAR}, #{shippingsn,jdbcType=VARCHAR}, 
+      #{ispush,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR}, 
+      #{modifydate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedRetailOrderRejection">
+        insert into ord_retailord_rejection
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="shippingno != null">
+                shippingNo,
+            </if>
+            <if test="shippingsn != null">
+                shippingSn,
+            </if>
+            <if test="ispush != null">
+                isPush,
+            </if>
+            <if test="createdate != null">
+                createDate,
+            </if>
+            <if test="createby != null">
+                createBy,
+            </if>
+            <if test="modifydate != null">
+                modifyDate,
+            </if>
+            <if test="modifyby != null">
+                modifyBy,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                (#{id,jdbcType=BIGINT},
+            </if>
+            <if test="shippingno != null">
+                #{shippingno,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingsn != null">
+                #{shippingsn,jdbcType=VARCHAR},
+            </if>
+            <if test="ispush != null">
+                #{ispush,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createby != null">
+                #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="modifydate != null">
+                #{modifydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyby != null">
+                #{modifyby,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedRetailOrderRejection">
+        update ord_retailord_rejection
+        <set>
+            <if test="shippingno != null">
+                shippingNo = #{shippingno,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingsn != null">
+                shippingSn = #{shippingsn,jdbcType=VARCHAR},
+            </if>
+            <if test="ispush != null">
+                isPush = #{ispush,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createby != null">
+                createBy = #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="modifydate != null">
+                modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyby != null">
+                modifyBy = #{modifyby,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = (#{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.baison.e3plus.basebiz.order.api.model.AdvancedRetailOrderRejection">
+    update ord_retailord_rejection
+    set shippingNo = #{shippingno,jdbcType=VARCHAR},
+      shippingSn = #{shippingsn,jdbcType=VARCHAR},
+      isPush = #{ispush,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      createBy = #{createby,jdbcType=VARCHAR},
+      modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      modifyBy = #{modifyby,jdbcType=VARCHAR}
+    where id = (#{id,jdbcType=BIGINT}
+  </update>
+
+    <insert id="insertbatch">
+        insert into ord_retailord_rejection (id, shippingNo, shippingSn,
+        isPush, createDate, createBy,
+        modifyDate, modifyBy)
+        values
+        <foreach collection="array" index="index" item="item" separator=",">
+            (
+            #{item.id,jdbcType=BIGINT},
+            #{item.shippingno,jdbcType=VARCHAR},
+            #{item.shippingsn,jdbcType=VARCHAR},
+            #{item.ispush,jdbcType=VARCHAR},
+            #{item.createdate,jdbcType=TIMESTAMP},
+            #{item.createby,jdbcType=VARCHAR},
+            #{item.modifydate,jdbcType=TIMESTAMP},
+            #{item.modifyby,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

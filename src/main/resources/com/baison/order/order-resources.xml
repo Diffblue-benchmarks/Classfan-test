@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource-items>
+
+    <item key="e3.errorCode.stock.unknown">未知异常</item>
+
+    <!--分单计算 -->
+    <item key="e3.errorCode.order.clothes.0001">仓库{0}中不存在sku为{1}的商品，或者可用数量不足</item>
+    <item key="e3.errorCode.order.clothes.0002">仓库组合{0}中sku为{1}的可用数量不足</item>
+    <item key="e3.errorCode.order.clothes.0003">订单单号为空！</item>
+    <item key="e3.errorCode.order.clothes.0004">店铺代码为空！</item>
+    <item key="e3.errorCode.order.clothes.0005">省代码为空！</item>
+    <item key="e3.errorCode.order.clothes.0007">订单商品明细为空！</item>
+    <item key="e3.errorCode.order.clothes.0008">没有找到合适的分单策略！</item>
+    <item key="e3.errorCode.order.clothes.0009">没有找到店铺，代码：{0}</item>
+    <item key="e3.errorCode.order.clothes.0010">分单策略【{0}】，没有设置可分单的仓库！</item>
+    <item key="e3.errorCode.order.clothes.0011">分单失败，可用库存不足！</item>
+    <item key="e3.errorCode.order.clothes.0012">匹配到分单策略{0}，没有分单成功，具体计算过程参考E3+分单记录</item>
+
+    <!-- 业绩分成 -->
+    <item key="e3.errorCode.order.clothes.01001">只有{0} 状态才能被{1}！</item>
+    <item key="e3.errorCode.order.clothes.01002">只有初始,启用状态才可以编辑明细</item>
+    <item key="e3.errorCode.order.clothes.01003">明细不能为空</item>
+    <item key="e3.errorCode.order.clothes.01004">已存在该笔订单的业绩分成报表数据，不能再审批！</item>
+    <item key="e3.errorCode.order.clothes.01005">数据错误，不能计算业绩分成结算单！</item>
+    <item key="e3.errorCode.order.clothes.01006">不能添加相同的店铺对象，请重新再试！</item>
+    <item key="e3.errorCode.order.clothes.01007">没有符合条件的单据需要进行业绩分成，请重新再试！</item>
+    <item key="e3.errorCode.order.clothes.01008">参与分成方的比例之和必须等于百分之百！</item>
+    <item key="e3.errorCode.order.clothes.01009">该业绩分成已存在相同商店范围记录，请重新编辑！</item>
+    <item key="e3.errorCode.order.clothes.01010">不能添加相同的仓库对象，请重新再试！</item>
+    <item key="e3.errorCode.order.clothes.01011">该业绩分成已存在相同仓库范围记录，请重新编辑！</item>
+    <item key="e3.errorCode.order.clothes.01012">在导入的商品数据中，在该业绩分成策略已存在，不能导入！</item>
+    <item key="e3.errorCode.order.clothes.01013">在导入的sku数据中，在该业绩分成策略已存在，不能导入！</item>
+    <item key="e3.errorCode.order.clothes.01014">在导入数据中策略id与当前策略不符，请重新编辑导入文件！</item>
+    <item key="e3.errorCode.order.clothes.01015">试用的业绩分成含有商品级或sku级的分成策略，但该订（退）单没有符合条件的明细数据，不能进行业绩分成！
+    </item>
+
+    <!-- 门店分成 -->
+    <item key="e3.errorCode.order.clothes.02001">订单没有商品明细数据，不能生成结算单！</item>
+    <item key="e3.errorCode.order.clothes.02002">数据错误，不能生成结算单！</item>
+    <item key="e3.errorCode.order.clothes.02003">没有订单数据，不能生成结算单！</item>
+
+    <!-- 日结 -->
+    <item key="e3.errorCode.order.clothes.07001">数据不能为空</item>
+    <item key="e3.errorCode.order.clothes.07002">商店code不能为空</item>
+    <item key="e3.errorCode.order.clothes.07003">系统不存在此商店code</item>
+    <item key="e3.errorCode.order.clothes.07004">业务日期不能为空</item>
+    <item key="e3.errorCode.order.clothes.07005">此日期不允许营业</item>
+    <item key="e3.errorCode.order.clothes.07006">没有要日结的商店</item>
+
+    <!-- 销售订单 -->
+    <item key="e3.errorCode.order.clothes.08001">客户信用额度不足，订单创建失败！</item>
+    <item key="e3.errorCode.order.clothes.08002">当前订单状态不允许撤销！</item>
+    <item key="e3.errorCode.order.clothes.08003">只有初始状态的订单才能修改！</item>
+    <item key="e3.errorCode.order.clothes.08004">以下单据编号重复，请确认：</item>
+    <item key="e3.errorCode.order.clothes.08005">库位为空！</item>
+
+    <!-- 订单公用错误代码 -->
+    <item key="e3.errorCode.stock.99010">存在有效的下游单据，无法操作</item>
+
+    <!-- 分单库存扣减 -->
+    <item key="e3.errorCode.stock.orderdistribute.000001">扣减redis库存成功，开始扣减数据库库存</item>
+    <item key="e3.errorCode.stock.orderdistribute.000002">扣减redis中sku库存失败, 失败原因:{0}</item>
+    <item key="e3.errorCode.stock.orderdistribute.000003">锁定数据库库存失败，失败原因:{0}</item>
+    <item key="e3.errorCode.stock.orderdistribute.000004">锁定数据库库存成功</item>
+    <item key="e3.errorCode.stock.orderdistribute.000005">MQ异步扣减数据库库存失败，MQ消息发送失败！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000006">订单已取消！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000007">分单失败，不允许纯赠品单！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000008">锁定分配池库存失败，失败原因：{0}！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000009">店铺【{0}】没有关联仓库！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000010">订单【{0}】正在分单中！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000011">店铺【{0}】没有可用分配池！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000012">分配池【{0}】没有关联仓库组！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000013">仓库组【{0}】没有关联实仓！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000014">仓库【{0}】所属省市区为空！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000015">行政区域【{0}】经纬度为空！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000016">扣减库存失败，无sku参数！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000017">分单失败，sku:{0}可用库存不足！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000018">不允许纯赠品单！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000019">订单【{0}】SKU需要转化，不允许存在多个明细！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000020">SKU转换旧码失败，条码{0}SKU数据为空！</item>
+    <item key="e3.errorCode.stock.orderdistribute.000021">SKU转换旧码失败，客户{0}SKU数据为空！</item>
+
+    <item key="e3.errorCode.order.retailReturnBillService.000001">单据【{0}】状态为空！</item>
+
+    <item key="e3.stock.orderdistribute.000011">店铺【{0}】以下仓库参与分单:{1}</item>
+    <item key="e3.stock.orderdistribute.000012">组织【{0}】的优先级有：{1}</item>
+    <item key="e3.stock.orderdistribute.000013">仓库【{0}】不能参与分单，不支持货到付款</item>
+    <item key="e3.stock.orderdistribute.000014">仓库【{0}】存在拒单记录，不能参与分单</item>
+    <item key="e3.stock.orderdistribute.000015">仓库【{0}】不能参与分单，没有设置仓库优先级明细</item>
+    <item key="e3.stock.orderdistribute.000016">仓库【{0}】不能参与分单，优先级分值为0</item>
+    <item key="e3.stock.orderdistribute.000017">sku【{0}】可用库存不足，订单中数量:{1}，仓库总库存数：{2}</item>
+    <item key="e3.stock.orderdistribute.000018">仓库【{0}】不能参与分单，禁止发货</item>
+    <item key="e3.stock.orderdistribute.000019">非预售仓库【{0}】不能参与分单，不支持预售订单</item>
+    <item key="e3.stock.orderdistribute.000020">预售仓库【{0}】不能参与分单，不支持非预售订单</item>
+    <item key="e3.stock.orderdistribute.000021">仓库发货优先级中没有找到店铺【{0}】配置的优先级</item>
+    <item key="e3.stock.orderdistribute.000022">当前新增的国家、省、市、区和仓库的优先级配置已存在</item>
+    <item key="e3.stock.orderdistribute.000023">sku{0}没有找到！</item>
+    <item key="e3.stock.orderdistribute.000024">仓库【{0}】不能单仓发货，仓库总库存数(sku/订单数/库存数)：{1}</item>
+
+    <item key="e3.stock.wareHousePriorityStrategy.001">已存在启用的全部商店优先级策略</item>
+    <item key="e3.stock.wareHousePriorityStrategy.002">店铺【{0}】在优先级策略【{1}】中已设置</item>
+    
+    <item key="e3.errorCode.orderDistributeStrategyService.001">店铺【{0}】重复添加</item>
+
+    <!-- 唯品会档期 拣货单 -->
+    <item key="e3.errorCode.vips.pick.error.100001">唯品会业务类型不存在</item>
+    <item key="e3.errorCode.vips.pick.error.100002">唯品会设置没有对应数据</item>
+    <item key="e3.errorCode.vips.pick.error.100003">本位币不存在</item>
+    <item key="e3.errorCode.vips.pick.error.100004">调出货主不能为空</item>
+    <item key="e3.errorCode.vips.pick.error.100005">调入货主不能为空</item>
+    <item key="e3.errorCode.vips.pick.error.100006">不存在新的拣货单</item>
+    <item key="e3.errorCode.vips.pick.error.100007">PO单号不能为空</item>
+    <item key="e3.errorCode.vips.pick.error.100008">PO单[{0}]未拣货数为0,不能创建</item>
+    <item key="e3.errorCode.vips.pick.error.10009">商店不同</item>
+    <item key="e3.errorCode.vips.pick.error.10010">下载拣货单失败</item>
+    <item key="e3.errorCode.vips.pick.error.10011">保存拣货单失败</item>
+    <item key="e3.errorCode.vips.pick.error.10012">不存在拣货单</item>
+    <item key="e3.errorCode.vips.pick.error.10013">更新PO未拣货数清空失败</item>
+    <item key="e3.errorCode.vips.pick.error.10014">更新PO未拣货数清空失败</item>
+
+    <item key="e3.errorCode.stock.99041">该单品是一品一物，数量固定为1</item>
+    <item key="e3.errorCode.stock.99046">该单品对应的唯一码档案为空,请先停用再启用单品</item>
+    <item key="e3.errorCode.stock.99042">{0}单品对应唯一码当前状态为{1}，此状态不能录入</item>
+    <item key="e3.errorCode.stock.99051">条码[{0}]对应唯一码[{1}]档案仓库为空,条码录入失败</item>
+    <item key="e3.errorCode.stock.99052">单据[{0}]对应调出仓库为空，条码[{1}]录入失败</item>
+    <item key="e3.errorCode.stock.99044">唯一码档案.仓库和单据主表.仓库不一致,不能录入</item>
+    <item key="e3.errorCode.stock.99043">{0}单品对应唯一码已被单号为{1}的{2}引用</item>
+    <item key="e3.errorCode.stock.wms.002">出库单回传失败！</item>
+    <item key="e3.errorCode.stock.wms.003">奇门回传失败！</item>
+    <item key="e3.errorCode.order.wms.004">快递公司{0}在E3+系统不存在</item>
+    <item key="e3.errorCode.order.wms.005">E3+系统商品明细为空</item>
+    <item key="e3.errorCode.order.wms.006">WMS出入参数为空</item>
+    <item key="e3.errorCode.order.wms.007">该{0}单据不存在或已完成</item>
+    <item key="e3.errorCode.order.wms.008">该{0}WMS单据已执行</item>
+    <item key="e3.errorCode.order.wms.009">根据快递单号和快递公司未匹配到销售订单</item>
+    <item key="e3.errorCode.order.wms.010">根据快递单号和快递公司匹配到的销售订单上的未设置OMS路径</item>
+    <item key="e3.errorCode.order.wms.011">快递单号不能为空</item>
+    <item key="e3.errorCode.order.wms.012">快递公司不能为空</item>
+    <item key="e3.errorCode.order.wms.013">该{0}单据未完成或不存在</item>
+
+
+    <!-- 快递适配策略 -->
+    <item key="e3.errorCode.order.advancedexpressstrategy.00001">订单参数为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00002">店铺ID为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00003">总金额为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00004">支付状态为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00005">平台代码为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00006">仓库ID为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00007">总重量为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00008">省份ID为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00009">区域ID为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00010">城市ID为空</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00011">不存在该仓库</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00012">未配置全局配送方式</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00013">该仓库已经存在</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00014">该店铺已经存在</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00015">未配置预发货配送方式</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00016">预发货配送方式中没有可达的配送方式</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00017">单据【{1}】正在适配快递策略</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00018">优先级不能小于0</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00019">请设置优先级！</item>
+    <item key="e3.errorCode.order.advancedexpressstrategy.00020">同一仓库同一商店只能有一个策略！</item>
+
+    <item key="e3.errorCode.stock.99012">商品明细为空</item>
+    <item key="e3.errorCode.stock.99015">商品明细有误</item>
+    <item key="e3.errorCode.stock.99048">明细存在数量为0或者价格为0的数据，请确认！</item>
+    <item key="e3.errorCode.stock.18005">该商品在该库区内的库存不足，无法添加</item>
+    <item key="e3.errorCode.stock.03003">无效条码！</item>
+    <item key="e3.errorCode.stock.99007">[{0}]条码不存在</item>
+    <item key="e3.errorCode.stock.99041">该单品是一品一物，数量固定为1</item>
+    <item key="e3.errorCode.stock.99013">商品库存不足</item>
+
+    <!-- 区域适配优先级 -->
+    <item key="e3.errorCode.order.adapterprioritydetail.00001">优先级不符合规则：{0}</item>
+
+    <!-- 区域快递策略适配 -->
+    <item key="e3.errorCode.order.no.delivery.type">没有合适的配送方式！</item>
+    
+    <!-- 关账 -->
+	<item key="e3.errorCode.order.closebill.001">当前单据明细品牌为空，无法进行关账业务！</item>
+	<item key="e3.errorCode.order.closebill.002">当前单据业务组织为空，无法进行关账业务！</item>
+	<item key="e3.errorCode.order.closebill.003">销售订单明细商品ID为空，无法进行关账业务！！</item>
+    <!-- 用户信息提示 -->
+    <item key="e3.errorCode.support.Error-012">用户名不存在！</item>
+</resource-items>

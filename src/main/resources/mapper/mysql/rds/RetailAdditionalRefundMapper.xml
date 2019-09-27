@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baison.e3plus.basebiz.order.service.dao.mapper.rds.RetailAdditionalRefundMapper" >
+  <resultMap id="BaseResultMap" type="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_code" property="shopCode" jdbcType="VARCHAR" />
+    <result column="bill_no" property="billNo" jdbcType="VARCHAR" />
+    <result column="trans_no" property="transNo" jdbcType="VARCHAR" />
+    <result column="refund_no" property="refundNo" jdbcType="VARCHAR" />
+    <result column="operation_date" property="operationDate" jdbcType="TIMESTAMP" />
+    <result column="deal_with_money" property="dealWithMoney" jdbcType="DECIMAL" />
+    <result column="payed_amount" property="payedAmount" jdbcType="DECIMAL" />
+    <result column="additional_refund_amount" property="additionalRefundAmount" jdbcType="DECIMAL" />
+    <result column="additional_refund_reason" property="additionalRefundReason" jdbcType="VARCHAR" />
+    <result column="operator_by" property="operatorBy" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_code, bill_no,trans_no,refund_no, operation_date, deal_with_money, payed_amount,
+    additional_refund_amount, additional_refund_reason, operator_by, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.baison.e3plus.basebiz.order.service.dao.model.example.RetailAdditionalRefundExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ord_retail_additional_refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ord_retail_additional_refund
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ord_retail_additional_refund
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund" >
+    insert into ord_retail_additional_refund (id, shop_code, bill_no,refund_no,
+      trans_no, operation_date, deal_with_money, 
+      payed_amount, additional_refund_amount, additional_refund_reason, 
+      operator_by, remark)
+    values (#{id,jdbcType=BIGINT}, #{shopCode,jdbcType=VARCHAR}, #{billNo,jdbcType=VARCHAR},#{refundNo,jdbcType=VARCHAR},
+      #{transNo,jdbcType=VARCHAR}, #{operationDate,jdbcType=TIMESTAMP}, #{dealWithMoney,jdbcType=DECIMAL}, 
+      #{payedAmount,jdbcType=DECIMAL}, #{additionalRefundAmount,jdbcType=DECIMAL}, #{additionalRefundReason,jdbcType=VARCHAR}, 
+      #{operatorBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund" >
+    insert into ord_retail_additional_refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopCode != null" >
+        shop_code,
+      </if>
+      <if test="billNo != null" >
+        bill_no,
+      </if>
+      <if test="refundNo != null" >
+        refund_no,
+      </if>
+      <if test="transNo != null" >
+        trans_no,
+      </if>
+      <if test="operationDate != null" >
+        operation_date,
+      </if>
+      <if test="dealWithMoney != null" >
+        deal_with_money,
+      </if>
+      <if test="payedAmount != null" >
+        payed_amount,
+      </if>
+      <if test="additionalRefundAmount != null" >
+        additional_refund_amount,
+      </if>
+      <if test="additionalRefundReason != null" >
+        additional_refund_reason,
+      </if>
+      <if test="operatorBy != null" >
+        operator_by,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null" >
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billNo != null" >
+        #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNo != null" >
+        #{refundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null" >
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealWithMoney != null" >
+        #{dealWithMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payedAmount != null" >
+        #{payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalRefundAmount != null" >
+        #{additionalRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalRefundReason != null" >
+        #{additionalRefundReason,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorBy != null" >
+        #{operatorBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <insert id="batchInsert" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund">
+        insert into ord_retail_additional_refund (
+          <include refid="Base_Column_List" />
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=BIGINT},
+             #{item.shopCode,jdbcType=VARCHAR},
+             #{item.billNo,jdbcType=VARCHAR},
+             #{item.refundNo,jdbcType=VARCHAR},
+             #{item.transNo,jdbcType=VARCHAR},
+             #{item.operationDate,jdbcType=TIMESTAMP},
+             #{item.dealWithMoney,jdbcType=DECIMAL},
+             #{item.payedAmount,jdbcType=DECIMAL},
+             #{item.additionalRefundAmount,jdbcType=DECIMAL},
+             #{item.additionalRefundReason,jdbcType=VARCHAR},
+             #{item.operatorBy,jdbcType=VARCHAR},
+             #{item.remark,jdbcType=VARCHAR})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        shop_code = VALUES(shop_code),
+        trans_no = VALUES(trans_no),
+        operation_date = VALUES(operation_date),
+        deal_with_money = VALUES(deal_with_money),
+        payed_amount = VALUES(payed_amount),
+        additional_refund_amount = VALUES(additional_refund_amount),
+        additional_refund_reason = VALUES(additional_refund_reason),
+        operator_by = VALUES(operator_by),
+        remark = VALUES(remark)
+    </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund" >
+    update ord_retail_additional_refund
+    <set >
+      <if test="shopCode != null" >
+        shop_code = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billNo != null" >
+        bill_no = #{billNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNo != null" >
+        refund_no = #{refundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null" >
+        trans_no = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealWithMoney != null" >
+        deal_with_money = #{dealWithMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payedAmount != null" >
+        payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalRefundAmount != null" >
+        additional_refund_amount = #{additionalRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalRefundReason != null" >
+        additional_refund_reason = #{additionalRefundReason,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorBy != null" >
+        operator_by = #{operatorBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baison.e3plus.basebiz.order.api.model.RetailAdditionalRefund" >
+    update ord_retail_additional_refund
+    set shop_code = #{shopCode,jdbcType=VARCHAR},
+      bill_no = #{billNo,jdbcType=VARCHAR},
+      refund_no = #{refundNo,jdbcType=VARCHAR},
+      trans_no = #{transNo,jdbcType=VARCHAR},
+      operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      deal_with_money = #{dealWithMoney,jdbcType=DECIMAL},
+      payed_amount = #{payedAmount,jdbcType=DECIMAL},
+      additional_refund_amount = #{additionalRefundAmount,jdbcType=DECIMAL},
+      additional_refund_reason = #{additionalRefundReason,jdbcType=VARCHAR},
+      operator_by = #{operatorBy,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

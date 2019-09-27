@@ -1,0 +1,50 @@
+﻿.setting
+.settings
+/.settings/
+*.project
+*.classpath
+*.iml
+.idea
+##ignore this file##
+/target/
+**/target/
+/.svn/ 
+.classpath
+*.classpath
+.project
+.settings      
+*/.settings/*
+##filter databfile��sln file##
+*.mdb  
+*.ldb  
+*.sln    
+##class file##
+*.com  
+*.class  
+*.dll  
+*.exe  
+*.o  
+*.so  
+# compression file
+*.7z  
+*.dmg  
+*.gz  
+*.iso  
+*.jar  
+*.rar  
+*.tar  
+*.zip  
+*.via
+*.tmp
+*.err 
+# OS generated files #  
+.DS_Store  
+.DS_Store?  
+ehthumbs.db  
+Thumbs.db  
+hsf
+/.metadata/
+/.recommenders/
+*.bak
+.classpath
+*.log
